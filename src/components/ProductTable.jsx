@@ -1,26 +1,32 @@
 import React from 'react';
 import ProductRow from './ProductRow';
 
-export default function ProductTable(props) {
-  console.log(`I am a product table with the props...`);
-  console.log(props.products);
+function ProductTable(props) {
+  const filterInput = props.filterInput;
+  const rows = [];
+
+  props.products.forEach((product) => {
+    if (product.name.indexOf(filterInput) === -1) {
+      return;
+    }
+    rows.push(<ProductRow product={product} key={product.name} />);
+  });
+
   return (
-    <>
-      <table>
+    <table>
+      <thead>
         <tr>
-          <th>Name</th>
-          <th>Price</th>
+          <td>
+            <h3>Name</h3>
+          </td>
+          <td>
+            <h3>Price</h3>
+          </td>
         </tr>
-        {props.products.map((product) => {
-          return (
-            <ProductRow
-              name={product.name}
-              price={product.price}
-              stocked={product.stocked}
-            />
-          );
-        })}
-      </table>
-    </>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
   );
 }
+
+export default ProductTable;

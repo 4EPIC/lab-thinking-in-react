@@ -1,0 +1,9 @@
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  text-align: center;
+  width: 15rem;
+  height: 3.5rem;
+}

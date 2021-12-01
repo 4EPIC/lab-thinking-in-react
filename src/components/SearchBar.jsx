@@ -1,38 +1,21 @@
 import React from 'react';
+import './SearchBar.css';
 
-export default class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function SearchBar(props) {
+  const filterInput = props.filterInput;
+  console.log(filterInput);
 
-  formSubmitHandler(e) {
-    e.preventDefault();
-  }
-
-  formHandler() {}
-
-  render() {
-    console.log(`xxxxxxxxxxxxxxxx`);
-    console.log(this.props.products[0].name);
-    return (
-      <>
-        <h3>Search</h3>
-        <form onSubmit={this.formSubmitHandler}>
-          <input
-            onChange={this.formHandler}
-            type="text"
-            placeholder="Search.."
-            name="name"
-            value={this.state.name}
-          />
-        </form>
-        <p>have here a search box</p>
-        <div>
-          <input type="checkbox" id="onStock" name="onStock" />
-          <label for="onStock">Only show products on stock</label>
-        </div>
-      </>
-    );
-  }
+  return (
+    <form className="searchContainer" action="">
+      <label htmlFor="">Search</label>
+      <input
+        type="text"
+        value={filterInput}
+        onChange={(e) => props.updatedInput(e.target.value)}
+        placeholder="Type any product"
+      />
+    </form>
+  );
 }
+
+export default SearchBar;
